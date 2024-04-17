@@ -7,9 +7,9 @@ class Teacher(db.Model):
 
     teacher_id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
     fname = db.Column(db.String(20), nullable = False, unique = True)
-    lname - db.Column(db.String(20), nullable = False, unique = True)
+    lname = db.Column(db.String(20), nullable = False, unique = True)
     teacher_email = db.Column(db.String(50), nullable = False, unique = True)
-    #foreign key relationships
+    #foreign key
 
 class Student(db.Model):
 
@@ -24,22 +24,27 @@ class Student(db.Model):
 
 ##ADD CONNECTOR CLASS: STUDENT/HOMEROOM
 
-class Location(db.Model):                       
+
+class HomeRoom(db.Model):#Homeroom =
+    
+    __tablename__ = "homeroom"
+    
+    homeroom_id = db.Column(db.Integ
+    homeroom_name = db.Column(db.Str
+    # teacher_id = db.relationship('
+    # student_id = db.relationship  
+
+
+
+
+             class Location(db.Model):                       
 
     __tablename__ = "locations"
 
     student_locations_id = db.Column(db.Integer, primary_key=True,)
     location_name = db.Column(db.String(20), nullable=False, unique=True)
 
-
-class HomeRoom(db.Model):#Homeroom = "class" py/school context naming challenge
-    
-    __tablename__ = "homeroom"
-    
-    homeroom_id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
-    homeroom_name = db.Column(db.String), nullable=False
-    # teacher_id = db.relationship('Teacher', ADDDDDDD (back-populates?))
-    # student_id = db.relationship                                                  
+                                             
 
 
 class Group(db.Model):
@@ -112,3 +117,11 @@ if __name__ == "__main__":
     from server import app as flask app
 
 
+def example_data():
+"""create some sample data"""
+
+    # ONLY NEED TO DO WHEN WRITING TESTS (AKA DELETE) 
+    # Teacher.query.delete()
+    # Student.query.delete()
+    # ADD ADD
+    
