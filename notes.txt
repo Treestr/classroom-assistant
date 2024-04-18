@@ -1,16 +1,8 @@
-# - AND assignment check in: on student route: profile shows active assignments, click, |
+# - CONTINUE add assignment check in: on student route: profile shows active assignments, click, |
 
-#CREATE tests.py
-# class FlaskTestsDatabase(TestCase):
-    # def tearDown(self):
-# 
-        # db.session.remove()
-        # db.drop_all()
-        # db.engine.dispose()
-# 
-    # CONT......check lecture
+CREATE LOG IN FEATURE FOR ATTENDANCE;'
 
-# CREATE SEED DATABASE TOUCH? DO I NEED TO DO THIS
+# CREATE SEED DATABASE DO I NEED TO DO THIS
 # import os
 # import json
 # from random import choice, randint
@@ -24,50 +16,11 @@
 More code will go here
 
 
-# CREATE JINJA TEMPLATE - WHERE/HOW
-# <!doctype html>
-# <html>
-#   <head>
-    # <meta charset="utf-8">
-    # <meta name="viewport" content="width=device-width">
-    # <title>
-    #   {% block title %}{% endblock %}
-    # </title>
-# 
-    # {% block head %}{% endblock %}
-#   </head>
-#   <body>
-    # {% block body %}{% endblock %}
-# 
-    # {% block after_body %}{% endblock %}
-#   </body>
-# </html>
+# session/key TO DO...
 
-#CREATE TEMPLATES: HOMEPAGE.HTML  ***DOES THIS LINK TO OTHER HTML PAGES?
-{% extends 'base.html' %}
-{% block title %}ADD ADD ADD ADD{% endblock %}
+QUE QUESTIONS
+project dependencies (general)
+seed database?
+session/key (rev movie ratings app)
 
-{% block body %}
-  <h1>Welcome!</h1>
-
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/movies">View all movies</a></li>
-    <li><a href="/users">View all users</a></li>
-  </ul>
-{% endblock %}
-
-# DO I NEED TO DO THIS?  *session/key
-# {% extends 'base.html' %}
-# {% block title %}Movie Ratings Home{% endblock %}
-# 
-# {% block body %}
-#   <h1>Welcome!</h1>
-# 
-#   <h2>Navigation</h2>
-#   <ul>
-    # <li><a href="/movies">View all movies</a></li>
-    # <li><a href="/users">View all users</a></li>
-#   </ul>
-# {% endblock %}
 

@@ -1,17 +1,11 @@
 from flask import Flask
 
-
-
-
 app = Flask(__name__)
 
 
-if __name__ == "__main__":
-
-app.run(host="0.0.0.0", debug=True)
-
 
 app.jinja_env.undefined = StrictUndefined ##RESEARCH strict undefined
+
 
 #PLACEHOLDER
 @app.route('/')
@@ -25,7 +19,7 @@ def homepage():
 #PLACEHOLDER
 @app.route("/ADD>")
 def show_students(student_id):
-    """Show details on a particular student.""
+    """Show details of a particular student.""
 
 
     student?? = crud.get_student_by_id(student_id)
@@ -39,3 +33,6 @@ def show_students(student_id):
 
 
 
+if __name__ == "__main__":
+
+app.run(host="0.0.0.0", debug=True)

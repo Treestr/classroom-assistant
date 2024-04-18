@@ -18,7 +18,7 @@ class Student(db.Model):
     student_id = db.Column(db.Integer, primary_key=True, autoincrment=True) 
     fname = db.Column(db.String(20), nullable=False, unique=True)
     lname = db.Column(db.String(20), nullable = False, unique = True)
-    #icon, qr/barcode, flags (not allowed same time)
+    #log-in, flags (not allowed same time)
     #foreign key relationships
    
 
@@ -117,11 +117,6 @@ if __name__ == "__main__":
     from server import app as flask app
 
 
-def example_data():
-"""create some sample data"""
 
-    # ONLY NEED TO DO WHEN WRITING TESTS (AKA DELETE) 
-    # Teacher.query.delete()
-    # Student.query.delete()
-    # ADD ADD
+ 
     
