@@ -26,7 +26,12 @@ More code will go here
 
 QUE QUESTIONS
 project dependencies (general)
-seed database?
+
 session/key (rev movie ratings app)
+
+
+####SEED DATABASE
+
+
 
 

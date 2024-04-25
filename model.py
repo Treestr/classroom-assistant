@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy import Table, Column, Integer, ForeignKey, String
+# from sqlalchemy.orm import relationship
 db = SQLAlchemy()
 
 class Teacher(db.Model):
@@ -9,43 +11,79 @@ class Teacher(db.Model):
     fname = db.Column(db.String(20), nullable = False, unique = True)
     lname = db.Column(db.String(20), nullable = False, unique = True)
     teacher_email = db.Column(db.String(50), nullable = False, unique = True)
-    #foreign key
+    students = db.relationship('Student', back_populates='teacher')
+
+    def __repr__(self):
+        return f"<Teacher(teacher_id={self.teacher_id}, 
+    fname='self{self.fname}', 
+    lname='self{self.lname},
+    teacher_email='{self.email}')>"
+     
 
 class Student(db.Model):
 
     __tablename__ = "students"
 
-    student_id = db.Column(db.Integer, primary_key=True, autoincrment=True) 
+    student_id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
     fname = db.Column(db.String(20), nullable=False, unique=True)
     lname = db.Column(db.String(20), nullable = False, unique = True)
-    #log-in, flags (not allowed same time)
-    #foreign key relationships
-   
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.teacher_id'), nullable=False)
+    teacher = db.relationship('Teacher', back_populates='students')
+    homeroom_id = db.Column(db.Integer, db.ForeignKey('homeroom.homeroom_id'), nullable=False)
+    homeroom = db.relationship('Homeroom', back_populates='students')
+    groups = db.relationship('GroupMembership', back_populates = "student")
 
-##ADD CONNECTOR CLASS: STUDENT/HOMEROOM
+    def __repr__(self):
+        return f"<Student(student_id=
+        {self.student_id}, fname='self{self.fname}', 
+        lname='self{self.lname},
+
+    
+
+##TO DO REVISE & ADD CONNECTOR CLASS: STUDENT/HOMEROOM
 
 
-class HomeRoom(db.Model):#Homeroom =
+class Homeroom(db.Model):#Homeroom =
     
     __tablename__ = "homeroom"
     
-    homeroom_id = db.Column(db.Integ
-    homeroom_name = db.Column(db.Str
-    # teacher_id = db.relationship('
-    # student_id = db.relationship  
+    homeroom_id = db.Column(db.Integ, primary_key=True, autoincrement=True) 
+    homeroom_name = db.Column(db.Str(20), nullable=False, unique=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.teacher_id'), nullable=False)
+    students = db.relationship('Student', back_populates='homeroom') 
+    
+    def __repr__(self):
+    return f"<Homeroom(homeroom_id={self.teacher_id}, 
+        fname='self{self.fname}', 
+        lname='self{self.lname},
+        teacher_email='{self.email}')>"
+    
+                                             
+class Attendance(db.Model):
+    __tablename__ = "attendance"
+    attendance_id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, nullable=False)
+    status = db.Column(db.String(10), nullable=False) #present or absent
+    student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'))
+    student = db.relationship('Student', back_populates='attendance_records')
+                                                     
 
-
-
-
-             class Location(db.Model):                       
-
+class Location(db.Model):
+    
     __tablename__ = "locations"
 
-    student_locations_id = db.Column(db.Integer, primary_key=True,)
+    location_id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
+    #add: flag(students not allowed at same time)
     location_name = db.Column(db.String(20), nullable=False, unique=True)
 
-                                             
-
+class MovementLog(db.Model): #MovementRecord??
+   __tablename__ = "movement_log"
+   log_id = db.Integer, primary_key=True)
+   student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'))
+   location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
+   time_out = db.Column(db.DateTime, nullable = False)
+   time_in = db.Column(db.DateTime) 
+   student = db.relationship('Student')
 
 class Group(db.Model):
 
@@ -53,18 +91,29 @@ class Group(db.Model):
 
     group_id = db.Column(db.Integer, primary_key=True, autoincrement=True,)#is comma correct check
     group_name = db.Column(db.String(20), unique=True)
+    students = db.relationship('GroupMembership', back_populates="groups")
+    homeroom_id = db.Column(db.Integer, db.ForeignKey('homeroom.homeroom_id'))
     #FK class_id
+
     
 
-    #membership_record is a CONNECTOR table
+#ADD group membership record?
+#add connector class Group_member
+class Group_membership(db.Model):
+    __tablename__ = "group_memberships"
+    student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'), primary_key=True_)
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.group_id'), primary_key=True)
+    student = db.relationship("Student", back_populates="groups")
+    group = ddb.relationship("Group", back_populates="students")
 
-    ###HELP WITH BELOW
-
-# class Group_Member(db.Model): #membership_record is a CONNECTOR table
+# class Leave_Record(db.Model):
+    # __tablename__ = "leave_records"
 # 
-    # __tablename__ = "group_members" #check syntax
-# group_id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
-
+    # leave_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # leave_time = 
+    # return_time = 
+    # FK: location_id, student_id
+    
 class Assignment(db.Model):
     
     __tablename__ = "assignments"
@@ -76,31 +125,17 @@ class Assignment(db.Model):
     #FK teacher_id, student_id
     #add columns: title, description, due_date, teacher_id FK
 
-##CREATE A CLASSS: CONNECTOR FOR STUDENTS/ASSIGNMENTS
 
-class Leave_Record(db.Model):
-    __tablename__ = "leave_records"
+##CREATE A CLASS: CONNECTOR FOR STUDENTS/ASSIGNMENTS
 
-    leave_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    leave_time = 
-    return_time = 
-    #FK: location_id, student_id
-    
-
-class Location(db.Model):
-    
-    __tablename__ = "locations"
-
-    location_id = db.Column((db.Integer, primary_key=True, autoincrement=True)
-    #add: location_name, flag(students not allowed at same time)
-
-class Submission(db.Model):
-    
-    __tablename__ = "submissions"
-
-    submission_id = db.Column((db.Integer, primary_key=True, autoincrement=True)
-#add: date, text_field, assignment_id FK, student_id FK
-    
+#SUBMIT ASSIGNMENTS
+# class Submission(db.Model):
+    # 
+    # __tablename__ = "submissions"
+# 
+    # submission_id = db.Column((db.Integer, primary_key=True, autoincrement=True)
+# add: date, text_field, assignment_id FK, student_id FK
+    # 
 
 
 def connect_to_db(app, db_name):
@@ -109,12 +144,21 @@ def connect_to_db(app, db_name):
     app.config["SQLALCHEMY_ECHO"] = True
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+
     db.app = app
     db.init_app(app)
 
 
 if __name__ == "__main__":
     from server import app as flask app
+    
+   
+   
+
+
+
+   
+
 
 
 
