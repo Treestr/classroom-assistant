@@ -46,8 +46,8 @@ teacher2 = Teacher(fname="Jane", lname="Doe", teacher_email="jane.doe@example.co
 db.session.add(teacher1)
 db.session.add(teacher2)
 
-student1 = Student(fname="Alex", lname="Anderson", teacher=teacher1, homeroom=homeroom1)
-student1 = Student(fname="Becca", lname="Boyd", teacher=teacher1, homeroom=homeroom2)
+student1 = Student(fname="Alex", lname="Anderson", teacher=teacher1, classroom=classroom1)
+student1 = Student(fname="Becca", lname="Boyd", teacher=teacher1, classroom=classroom2)
 db.session.add(student1)
 db.session.add(student2)
 

@@ -14,8 +14,7 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined ##RESEARCH strict undefined
 
 
-#ADD ROUTES & VIEW FUNCTIONS
-#PLACEHOLDER
+
 @app.route('/')
 def homepage():
     """View homepage."""
@@ -28,27 +27,11 @@ def register():
 
     return render_template('register.html')
 
-@app.route("/students")
-def all_students()
+@app.route("/students/<student_id>)
+def show_students(student_id):
 
-    students = crud.get_students()
-    return render_template("all_students.html"), students==students
-#PLACEHOLDER
-
-
-#PLACEHOLDER
-# @app.route("/ADD>")
-# def show_students(student_id):
-    # """Show details of a particular student.""
-# 
-# 
-    # student?? = crud.get_student_by_id(student_id)
-# 
-    # return render_template("student_information.html", ADD=ADD)
-#    
-    # 
-      #PLACEHOLDER
-# 
+    student = crud.get_students_by_id(student_id)
+    return render_template("all_students.html"), student==student
 
 
 

@@ -1,15 +1,16 @@
 {% extends 'base.html' %} 
-{%block title %} All Students {% endblock%} {%block
-body %}
+{%block title %} All Students {% endblock%} 
+{%block body %}
 <h1>All Students</h1>
 <ul>
  {% for student in students %}  
  <li>
     <a href="/students/{{ student.student_id}}">
-        {{student.fname + lname}}
+        {{student.student_id}}
     </a>"
  </li> 
+ {% endfor %}
 </ul>
 <p>{{ student }}</p>
 
-{% endfor %} {% endblock body %}
+{% endblock body %}
