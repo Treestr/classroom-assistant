@@ -86,7 +86,7 @@ def create_classroom():
     )
     return new_classroom()
 
-def get_classrooms()
+def get_classrooms():
     """Return all classrooms"""
 
     return Classroom.query.all()
