@@ -70,10 +70,13 @@ def create_student(fname, lname, student_id):
     )
     return new_student()
 
-def get_students()
+def get_all_students():
     """Return all students"""
 
     return Student.query.all()
+
+def get_student_by_id():
+    Student.query.get(1)
 
 def create_classroom():
     classroom = Classroom(
