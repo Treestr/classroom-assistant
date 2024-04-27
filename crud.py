@@ -45,39 +45,52 @@ if __name__ == '__main__':
     connect_to_db(app)
 
 
-def create_teacher(fname, lname, teacher_email):
+def create_user(fname, lname, teacher_email):
 
     teacher = Teacher(
-    """Create and return a teacher user."""
-    new_teacher = Teacher(fname, lname=lname, teacher_email=teacher_email) #NAME CHANGE
-    db.session.add(new_teacher)
+    """Create and return a new user."""
+    new_user = Teacher(fname, lname=lname, teacher_email=teacher_email)
+    db.session.add(new_user)
     db.session.commit()
     )
-    return new_teacher #NAME CHANGE
+    return new_user 
 
-def get_all_teachers():
+def create_student(fname, lname, student_id):
+
+    student = Student(
+    """Create and return a new user."""
+    new_student = Student(fname, lname=lname, student_id=student_id) 
+    db.session.add(new_student)
+    db.session.commit()
+    )
+    return new_student
+
+def create_ 
+
+
+# def get_all_teachers():
     return Teacher.query.all()
-
-def get_teacher_by_id(teacher_id):
-    return Teacher.query.get(teacher_id)
-
-def update_teacher(teacher_id, fname, lname, teacher_email)
-    teacehr = Teacher.query.get(teacher_id)
-    if teacher:
-        teacher.fname = fname
-        teacher.lname = lname
-        teacher.teacher_email = teacher_email
-        db.session.commit()
-
-    return teacher
-
-def delete_teacher(teacher_id):
-    teacher = Teacher.query.get(teacher_id)
-    if teacher:
-        db.session.delete(teacher)
-        db.session.commit()
-        
-    return teacher
+# 
+# def get_teacher_by_id(teacher_id):
+    # return Teacher.query.get(teacher_id)
+# 
+# def update_teacher(teacher_id, fname, lname, teacher_email)
+    # teacher = Teacher.query.get(teacher_id)
+    # if teacher:
+        # teacher.fname = fname
+        # teacher.lname = lname
+        # teacher.teacher_email = teacher_email
+        # db.session.commit()
+# 
+    # return teacher
+# 
+# def delete_teacher(teacher_id):
+    # teacher = Teacher.query.get(teacher_id)
+    # if teacher:
+        # db.session.delete(teacher)
+        # db.session.commit()
+        # 
+    # return teacher
 
 #CHECK IF CORRECT, COMPLETE FOR OTHER CLASSES
 

@@ -27,6 +27,12 @@ def register():
     """View registration page"""
 
     return render_template('register.html')
+
+@app.route("/students")
+def all_students
+
+    students = crud.get_students()
+    return render_template("all_students.html"), students=students)
 #PLACEHOLDER
 
 
