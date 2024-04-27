@@ -27,6 +27,25 @@ def register():
 
     return render_template('register.html')
 
+@app.route ("/users", methods= [POST"])                               
+def register_user()
+"""Create a new user"""
+
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash("Oh no! This email is already associated with another user. Please Try again.")
+    else
+        user = crud.create_user(email, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("Success! Account Created. Please log in.")
+
+    return redirect("/")    
+
+
 @app.route("/students/<student_id>)
 def show_students(student_id):
 

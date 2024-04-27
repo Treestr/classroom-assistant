@@ -60,6 +60,10 @@ def get_users()
 
     return User.query.all()
 
+def get_user_by_email(email):
+
+    return User.query.filter(User.email == email).first() ##SHOULD CREATE USER CLASS?
+
 def create_student(fname, lname, student_id):
 
     student = Student(
