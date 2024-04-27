@@ -53,7 +53,12 @@ def create_user(fname, lname, teacher_email):
     db.session.add(new_user)
     db.session.commit()
     )
-    return new_user 
+    return new_user() 
+
+def get_users()
+    """Return all users"""
+
+    return User.query.all()
 
 def create_student(fname, lname, student_id):
 
@@ -63,9 +68,25 @@ def create_student(fname, lname, student_id):
     db.session.add(new_student)
     db.session.commit()
     )
-    return new_student
+    return new_student()
 
-def create_ 
+def get_students()
+    """Return all students"""
+
+    return Student.query.all()
+
+def create_classroom():
+    classroom = Classroom(
+        new_classroom = Classroom()
+        db.session.add(new_classroom)
+        db.session.commit()    
+    )
+    return new_classroom()
+
+def get_classrooms()
+    """Return all classrooms"""
+
+    return Classroom.query.all()
 
 
 # def get_all_teachers():

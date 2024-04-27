@@ -40,6 +40,24 @@ class Student(db.Model):
 
 
 
+#COMBINE FIRST AND LAST NAME
+
+# class Student:
+    # def __init__(self, fname, lname):
+        # self.fname = fname
+        # self.lname = lname
+    # 
+    # def full_name(self):
+        # return f"{self.fname} {self.lname}"
+# 
+# Create a student object
+# student = Student("John", "Wick")
+# 
+# 
+# print(student.full_name())  
+
+
+
 class Classroom(db.Model):#Homeroom =
     
     __tablename__ = "classroom"

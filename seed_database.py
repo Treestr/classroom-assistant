@@ -51,10 +51,10 @@ student1 = Student(fname="Becca", lname="Boyd", teacher=teacher1, homeroom=homer
 db.session.add(student1)
 db.session.add(student2)
 
-homeroom1 = Homeroom(homeroom_name="Homeroom A", teacher=teacher1)
-homeroom2 = Homeroom(homeroom_name="Homeroom B", teacher=teacher2)
-db.session.add(homeroom1)
-db.session.add(homeroom2)
+classroom1 = Classroom(classroom_name="Classroom A", teacher=teacher1)
+classroom2 = Classroom(classroom_name="Classroom B", teacher=teacher2)
+db.session.add(classroom1)
+db.session.add(classroom2)
 
 attendance1 = Attendance(date=datetime.today(), status="present", student=student1) #DATETIME import?
 attendance2 = Attendance(date=datetime.today(), status="present", student=student1) #DATETIME import?
