@@ -36,7 +36,7 @@ def register_user()
 
     user = crud.get_user_by_email(email)
     if user:
-        flash("Oh no! This email is already associated with another user. Please Try again.")
+        flash("Oh no! This email is already in use. Please Try again.")
     else
         user = crud.create_user(email, password)
         db.session.add(user)
