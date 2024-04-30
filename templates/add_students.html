@@ -1,0 +1,82 @@
+Add Students
+
+<h1>Add Students</h1>
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+         const form = document.querySelector('#student-form');
+         const StudentsList = document.querySelector('#students-list');
+         form.addEventListener('submit', function(event) {
+             event.preventDefault();
+
+             const fnameInput = document.querySelector('#fname-input');
+             const lnameInput = document.querySelector('#lname-input'); 
+
+             const fname = fnameInput.value.trim();
+             const lname = lnameInput.value.trim();
+             
+
+             if (fname!== '' && lname!== ' ') {
+                 addStudent(fname, lname);
+                 fnameINput.value = '';
+                 lnameINput.value = '';
+             }
+         })
+     })
+
+     function addStudent(fname, lname) {
+         fetch('/add_student', {
+             method: 'POST',
+             body: JSON.stringify({ fname; fname, lname: lname}),
+             headers: {
+                 'Content - Type': 'application/json'
+             }
+         })
+         .then(response => response.json())
+         .then(data => {
+
+            const listItem = document.createElement('li');
+            listItem.textContent = '${data.fname} ${data.lname}';
+            studentsList.appendChild(listItem);
+
+            const sortedList = Array.from(studentsList.children).fort((a, b) => a.textContent.localeCompare(b.textContent));
+            studentsList.innerHTML = '';
+            sortedList.forEach(item => studentsList.appendChild(item));
+
+         })
+         .catch(error => console.error('Error:', error));
+        };
+
+    </script>
+    </head>
+    <body>
+        <h2>Add Students</h2>
+        <form id="student-form">
+            <input type="text" id="fname-input" placeholder="Enter first name"
+            <input type="text" id="lname-input" placeholder="Enter last name">
+            <button type="submit">Add Student</button>
+         </form>
+         
+         <h2>Student List</h2>
+         <ul id="students-list"></ul>
+         </body>
+
+         </html>
+
+
+
+
+
+
+
+
+//   {% for student in students %}
+//   <li>
+    //  <a href="/students/{{ student.student_id}}">
+        //  {{student.student_id}}
+    //  </a>"
+//   </li>
+//   {% endfor %}
+// </script>
+// <p>{{ student }}</p>
+
+// {% endblock body %}

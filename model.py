@@ -14,10 +14,10 @@ class Teacher(db.Model):
     students = db.relationship('Student', back_populates='teacher')
 
     def __repr__(self):
-        return f"<Teacher(teacher_id={self.teacher_id}, 
-    fname='self{self.fname}', 
-    lname='self{self.lname},
-    teacher_email='{self.email}')>"
+        return f"<Teacher(teacher_id={self.teacher_id}
+    fname=self{self.fname} 
+    lname=self{self.lname}
+    teacher_email={self.email}>"
      
 
 class Student(db.Model):
@@ -31,12 +31,12 @@ class Student(db.Model):
     teacher = db.relationship('Teacher', back_populates='students')
     homeroom_id = db.Column(db.Integer, db.ForeignKey('classroom.classroom_id'), nullable=False)
     homeroom = db.relationship('Classroom', back_populates='students')
-    groups = db.relationship('GroupMembership', back_populates = "student")
+    groups = db.relationship('GroupMembership', back_populates = 'student')
 
     def __repr__(self):
         return f"<Student(student_id=
-        {self.student_id}, fname='self{self.fname}', 
-        lname='self{self.lname}'/>"
+        {self.student_id} fname=self{self.fname} 
+        lname=self{self.lname}/>"
 
 
 
@@ -71,7 +71,7 @@ class Classroom(db.Model):#Homeroom =
     return f"<Classroom(classroom_id={self.teacher_id}, 
         fname ='self{self.fname}', 
         lname ='self{self.lname},
-        teacher_email ='{self.email}'/>"
+        teacher_email ={self.email}/>"
     
                                              
 class Attendance(db.Model):

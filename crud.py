@@ -67,7 +67,7 @@ def get_user_by_email(email):
 def create_student(fname, lname, student_id):
 
     student = Student(
-    """Create and return a new user."""
+    
     new_student = Student(fname, lname=lname, student_id=student_id) 
     db.session.add(new_student)
     db.session.commit()
