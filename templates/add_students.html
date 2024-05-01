@@ -17,8 +17,8 @@ Add Students
 
              if (fname!== '' && lname!== ' ') {
                  addStudent(fname, lname);
-                 fnameINput.value = '';
-                 lnameINput.value = '';
+                 fnameInput.value = '';
+                 lnameInput.value = '';
              }
          })
      })
@@ -26,7 +26,7 @@ Add Students
      function addStudent(fname, lname) {
          fetch('/add_student', {
              method: 'POST',
-             body: JSON.stringify({ fname; fname, lname: lname}),
+             body: JSON.stringify({ fname: fname, lname: lname}),
              headers: {
                  'Content - Type': 'application/json'
              }

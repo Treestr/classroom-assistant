@@ -14,13 +14,15 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined ##RESEARCH strict undefined
 
 
-
+# HOMEPAGE
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('homepage.html')
 
+
+# REGISTER USER/SIGN-UP
 @app.route('/register')
 def register():
     """View registration page"""
@@ -29,8 +31,6 @@ def register():
 
 @app.route ("/users", methods= ["POST"])                               
 def register_user():
-    
-"""Create a new user"""
 
     email = request.form.get("email")
     password = request.form.get("password")
@@ -45,22 +45,28 @@ def register_user():
         flash("Success! Account Created. Please log in.")
 
     return redirect("/")  
-
-    students = []
+    
 
     @app.route('/')
     def index():
-        return render_template('add_students.html')
+        students = []
+        return render_template('add_students.html', students=students)
+    
+    
+    
+    #ADD STUDENTS TO CLASSROOM
     @app.route('/add_student', methods=['POST'])
     def add_student():
      data = request.json
      fname = data.get('fname')
      lname = data.get('lname')
 
-    new_student = Student(fname, lname)
+    new_student = {'fname': fname, 'lname': lname}
     students.append(new_student)
 
-    return jsonify({'fname': fname, 'lname': lname})
+    return jsonify(new_student)
+
+
 
 
 
