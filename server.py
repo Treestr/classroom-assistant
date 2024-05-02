@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
+import crud
 from model import connect_to_db, db, Student #add all classes here specifically?
-import crud
- 
-import crud
+
+
 
 from jinja2 import StrictUndefined
 
@@ -44,27 +44,44 @@ def register_user():
         db.session.commit()
         flash("Success! Account Created. Please log in.")
 
+@app.route('/')
+def index():
+    students = []
+    return render_template('add_students.html', students=students)
+    
+    
+    
+#ADD STUDENTS TO CLASSROOM
+@app.route('/add_student', methods=['POST'])
+def add_student():
+ data = request.json
+ fname = data.get('fname')
+ lname = data.get('lname')
+new_student = {'fname': fname, 'lname': lname}
+students.append(new_student)
+return jsonify(new_student)
+    
+    
     return redirect("/")  
     
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
-    @app.route('/')
-    def index():
-        students = []
-        return render_template('add_students.html', students=students)
-    
-    
-    
-    #ADD STUDENTS TO CLASSROOM
-    @app.route('/add_student', methods=['POST'])
-    def add_student():
-     data = request.json
-     fname = data.get('fname')
-     lname = data.get('lname')
+   
+   
 
-    new_student = {'fname': fname, 'lname': lname}
-    students.append(new_student)
-
-    return jsonify(new_student)
+   
 
 
 
