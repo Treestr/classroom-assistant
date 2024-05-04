@@ -38,17 +38,15 @@
 
 """CRUD operations"""
 
-from model import db, Teacher, Student, Classroom, Attendance, Location, MovementLog, Group, GroupMembership, connect_to_db 
+from model import db, Teacher, Student, Classroom, connect_to_db 
 
 
-def create_user(fname, lname, teacher_email):
+def create_teacher(fname, lname, teacher_email, password):
 
     
-    new_user = Teacher(fname, lname=lname, teacher_email=teacher_email)
-    db.session.add(new_user)
-    db.session.commit()
+    new_teacher = Teacher(fname=fname, lname=lname, teacher_email=teacher_email, password=password)
     
-    return new_user 
+    return new_teacher 
 
 def get_users():
     """Return all users"""
@@ -57,15 +55,13 @@ def get_users():
 
 def get_teacher_by_email(email):
 
-    return Teacher.query.filter(Teacher.email == email).first()
+    return Teacher.query.filter(Teacher.teacher_email == email).first()
 
 
 def create_student(fname, classroom_id, teacher_id):
     
     
     new_student = Student(fname=fname, classroom_id=classroom_id, teacher_id=teacher_id) 
-    db.session.add(new_student)
-    db.session.commit()
     
     return new_student
 
@@ -77,10 +73,10 @@ def get_all_students():
 def get_student_by_id():
     Student.query.get(1)
 
-def create_classroom(classroom_name, classroom_description):
-    new_classroom = Classroom(classroom_name=classroom_name, classroom_description=classroom_description)
-    db.session.add(new_classroom)
-    db.session.commit() 
+def create_classroom(classroom_name, classroom_description, teacher_id):
+    new_classroom = Classroom(classroom_name=classroom_name, classroom_description=classroom_description, teacher_id=teacher_id)
+    
+    
 
     return new_classroom       
 

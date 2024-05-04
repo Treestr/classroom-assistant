@@ -33,13 +33,15 @@ def register_user():
 
     email = request.form.get("email")
     password = request.form.get("password")
-
-    user = crud.get_user_by_email(email)
+    fname = request.form.get("fname")
+    lname = request.form.get("lname")
+    user = crud.get_teacher_by_email(email)
+    
     if user:
         flash("This email is already in use. Please Try again.")
     else:
-        user = crud.create_user(email, password)
-        db.session.add(user)
+        teacher = crud.create_teacher(fname, lname, email, password)
+        db.session.add(teacher)
         db.session.commit()
         flash("Success! Account Created. Please log in.")
     return redirect("/login")
@@ -56,6 +58,10 @@ def login_user():
     teacher = crud.get_teacher_by_email(email)
     if password == teacher.password:
         session["teacher_id"]=teacher.teacher_id
+
+        print(teacher.teacher_id)
+        print(session)
+        
         return redirect("/add_classroom")
     flash ("Not logged in.")
     return redirect("/login")
@@ -68,7 +74,9 @@ def add_classroom():
 def addclassroom():
     classroom_name = request.form.get("classroom_name")
     classroom_description= request.form.get("classroom_description")
-    classroom=crud.create_classroom(classroom_name, classroom_description)
+    classroom=crud.create_classroom(classroom_name, classroom_description, session["teacher_id"])
+    db.session.add(classroom)
+    db.session.commit()
     session["classroom_id"]=classroom.classroom_id
     return redirect("/add_students")
 
@@ -88,13 +96,20 @@ def student_page():
     # students.append(new_student)
 
 #NEW FILE, ADD STUDENTS TO CLASSROOM, NEED STUDENTS TO BELONG TO A CLASSROOM
-@app.route('/addstudent', methods=['POST'])
+@app.route('/addstudents', methods=['POST'])
 def add_student():
     fname = request.form.get("fname")
     student=crud.create_student(fname, session["classroom_id"], session["teacher_id"])    
+    db.session.add(student)
+    db.session.commit()
     print(student)
     flash("Student Created!")
-    return redirect("/")
+    return redirect("/dashboard")
+
+@app.route('/dashboard')
+def show_dashboard():
+    #get all students to pass to template & display*jinja, boostrap - cards *get all students *query database *review crud!!!!
+    return render_template("dashboard.html")
                               
             
 # return jsonify(new_student)
@@ -114,5 +129,5 @@ def add_student():
 
 
 if __name__ == "__main__":
-
+    connect_to_db(app, "classroom")
     app.run(host="0.0.0.0", debug=True)
