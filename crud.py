@@ -38,41 +38,35 @@
 
 """CRUD operations"""
 
-from model import db, Teacher, Student, Homeroom, Attendance, Location, MovementLog, Group, GroupMembership, connect_to_db 
-
-if __name__ == '__main__':
-    from server import app
-    connect_to_db(app)
+from model import db, Teacher, Student, Classroom, Attendance, Location, MovementLog, Group, GroupMembership, connect_to_db 
 
 
 def create_user(fname, lname, teacher_email):
 
-    teacher = Teacher(
-    """Create and return a new user."""
+    
     new_user = Teacher(fname, lname=lname, teacher_email=teacher_email)
     db.session.add(new_user)
     db.session.commit()
-    )
-    return new_user() 
+    
+    return new_user 
 
-def get_users()
+def get_users():
     """Return all users"""
 
-    return User.query.all()
+    return Teacher.query.all()
 
-def get_user_by_email(email):
+def get_teacher_by_email(email):
 
-    return User.query.filter(User.email == email).first() ##SHOULD CREATE USER CLASS?
+    return Teacher.query.filter(Teacher.email == email).first() ##SHOULD CREATE USER CLASS?
 
 def create_student(fname, lname, student_id):
-
-    student = Student(
+    
     
     new_student = Student(fname, lname=lname, student_id=student_id) 
     db.session.add(new_student)
     db.session.commit()
-    )
-    return new_student()
+    
+    return new_student
 
 def get_all_students():
     """Return all students"""
@@ -83,12 +77,11 @@ def get_student_by_id():
     Student.query.get(1)
 
 def create_classroom():
-    classroom = Classroom(
-        new_classroom = Classroom()
-        db.session.add(new_classroom)
-        db.session.commit()    
-    )
-    return new_classroom()
+    new_classroom = Classroom()
+    db.session.add(new_classroom)
+    db.session.commit() 
+
+    return new_classroom       
 
 def get_classrooms():
     """Return all classrooms"""
@@ -121,6 +114,8 @@ def get_classrooms():
     # return teacher
 
 #CHECK IF CORRECT, COMPLETE FOR OTHER CLASSES
-
-
+if __name__ == '__main__':
  
+    from server import app
+    app.app_context().push()
+    connect_to_db(app, "classroom")

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
-import crud
+import crud 
 from model import connect_to_db, db, Student #add all classes here specifically?
 
 
@@ -14,7 +14,6 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined ##RESEARCH strict undefined
 
 
-# HOMEPAGE
 @app.route('/')
 def homepage():
     """View homepage."""
@@ -44,7 +43,7 @@ def register_user():
         db.session.commit()
         flash("Success! Account Created. Please log in.")
 
-@app.route('/')
+@app.route('/add_students')
 def index():
     students = []
     return render_template('add_students.html', students=students)
@@ -54,40 +53,18 @@ def index():
 #ADD STUDENTS TO CLASSROOM
 @app.route('/add_student', methods=['POST'])
 def add_student():
- data = request.json
- fname = data.get('fname')
- lname = data.get('lname')
-new_student = {'fname': fname, 'lname': lname}
-students.append(new_student)
-return jsonify(new_student)
+    data = request.json
+    fname = data.get('fname')
+    lname = data.get('lname')
+    new_student = {'fname': fname, 'lname': lname}
+    students.append(new_student)
+            
+# return jsonify(new_student)
+# 
+        # return redirect("/")  
+# 
+     
     
-    
-    return redirect("/")  
-    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-
-   
-   
-
-   
-
-
-
-
-
-
 
 # @app.route("/students/<student_id>)
 # def show_students(student_id):
@@ -100,4 +77,4 @@ return jsonify(new_student)
 
 if __name__ == "__main__":
 
-app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True)

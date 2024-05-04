@@ -1,4 +1,12 @@
-Add Students
+{%extends "base.html" %}
+
+{% block title%} Add Students: Classroom Assistant{% endblock %}
+
+{%block head %}
+
+{% endblock %}
+
+{% block body %}
 
 <h1>Add Students</h1>
 <script>
@@ -38,7 +46,7 @@ Add Students
             listItem.textContent = '${data.fname} ${data.lname}';
             studentsList.appendChild(listItem);
 
-            const sortedList = Array.from(studentsList.children).fort((a, b) => a.textContent.localeCompare(b.textContent));
+            const sortedList = Array.from(studentsList.children).sort((a, b) => a.textContent.localeCompare(b.textContent));
             studentsList.innerHTML = '';
             sortedList.forEach(item => studentsList.appendChild(item));
 
@@ -54,7 +62,7 @@ Add Students
             <input type="text" id="fname-input" placeholder="Enter first name">
             <input type="text" id="lname-input" placeholder="Enter last name">
             <button type="submit">Add Student</button>
-         </form>
+        </form>
          
          <h2>Student List</h2>
          <ul id="students-list"></ul>

@@ -13,7 +13,9 @@ import server
 os.system('dropdb db_classroom')
 os.system('createdb db_classroom')
 
-model.connect_to_db(server.app)
+
+server.app.app_context().push()
+model.connect_to_db(server.app, "classroom")
 model.db.create_all()
 
 # with open('data/movies.json') as f: EDIT EDIT EDIT
@@ -21,8 +23,8 @@ model.db.create_all()
 
 
 
-Create movies, store them in list so we can use them
-to create fake ratings
+# Create movies, store them in list so we can use them
+# to create fake ratings
 # movies_in_db = []
 # for movie in movie_data:
     # title, overview, poster_path = (

@@ -14,10 +14,7 @@ class Teacher(db.Model):
     students = db.relationship('Student', back_populates='teacher')
 
     def __repr__(self):
-        return f"<Teacher(teacher_id={self.teacher_id}
-    fname=self{self.fname} 
-    lname=self{self.lname}
-    teacher_email={self.email}>"
+        return f"<Teacher(teacher_id={self.teacher_id} fname=self{self.fname} lname=self{self.lname} teacher_email={self.email}>"
      
 
 class Student(db.Model):
@@ -34,9 +31,7 @@ class Student(db.Model):
     groups = db.relationship('GroupMembership', back_populates = 'student')
 
     def __repr__(self):
-        return f"<Student(student_id=
-        {self.student_id} fname=self{self.fname} 
-        lname=self{self.lname}/>"
+        return f"<Student(student_id={self.student_id} fname=self{self.fname} lname=self{self.lname}/>"
 
 
 
@@ -58,20 +53,17 @@ class Student(db.Model):
 
 
 
-class Classroom(db.Model):#Homeroom =
+class Classroom(db.Model):
     
     __tablename__ = "classroom"
     
-    classroom_id = db.Column(db.Integ, primary_key=True, autoincrement=True) 
-    classroom_name = db.Column(db.Str(20), nullable=False, unique=True)
+    classroom_id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
+    classroom_name = db.Column(db.String(20), nullable=False, unique=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.teacher_id'), nullable=False)
     students = db.relationship('Student', back_populates='classroom') 
     
     def __repr__(self):
-    return f"<Classroom(classroom_id={self.teacher_id}, 
-        fname ='self{self.fname}', 
-        lname ='self{self.lname},
-        teacher_email ={self.email}/>"
+        return f"<Classroom(classroom_id={self.teacher_id} fname ='self{self.fname}'lname ='self{self.lname} teacher_email ={self.email}/>"
     
                                              
 class Attendance(db.Model):
@@ -83,7 +75,7 @@ class Attendance(db.Model):
     student = db.relationship('Student', back_populates='attendance_records')
 
     def __repr__(self):
-    return f"<Attendance(attendance_id={self.attendance_id}, status = 'self{self.status}>"
+        return f"<Attendance(attendance_id={self.attendance_id}, status = 'self{self.status}>"
                                                      
 
 class Location(db.Model):
@@ -117,12 +109,12 @@ class Group(db.Model):
 
 #ADD group membership record?
 #add connector class Group_member
-class Group_membership(db.Model):
+class GroupMembership(db.Model):
     __tablename__ = "group_memberships"
-    student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'), primary_key=True_)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'), primary_key=True)
     group_id = db.Column(db.Integer, db.ForeignKey('groups.group_id'), primary_key=True)
     student = db.relationship("Student", back_populates="groups")
-    group = ddb.relationship("Group", back_populates="students")
+    group = db.relationship("Group", back_populates="students")
 
     
 class Assignment(db.Model):
@@ -151,7 +143,7 @@ class Assignment(db.Model):
 
 def connect_to_db(app, db_name):
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_classroom}"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql:///{db_name}"
     app.config["SQLALCHEMY_ECHO"] = True
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -161,8 +153,10 @@ def connect_to_db(app, db_name):
 
 
 if __name__ == "__main__":
-    from server import app as flask app
-    
+    from server import app
+
+    app.app_context().push()
+    connect_to_db(app, "classroom")   
    
    
 
