@@ -18,16 +18,15 @@ class Teacher(db.Model):
      
 
 class Student(db.Model):
-
+    
     __tablename__ = "students"
 
     student_id = db.Column(db.Integer, primary_key=True, autoincrement=True) 
     fname = db.Column(db.String(20), nullable=False, unique=True)
-    lname = db.Column(db.String(20), nullable = False, unique = True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.teacher_id'), nullable=False)
     teacher = db.relationship('Teacher', back_populates='students')
-    homeroom_id = db.Column(db.Integer, db.ForeignKey('classroom.classroom_id'), nullable=False)
-    homeroom = db.relationship('Classroom', back_populates='students')
+    classroom_id = db.Column(db.Integer, db.ForeignKey('classroom.classroom_id'), nullable=False)
+    classroom = db.relationship('Classroom', back_populates='students')
     groups = db.relationship('GroupMembership', back_populates = 'student')
 
     def __repr__(self):
@@ -93,7 +92,7 @@ class MovementLog(db.Model): #MovementRecord??
    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'))
    time_out = db.Column(db.DateTime, nullable = False)
    time_in = db.Column(db.DateTime) 
-   student = db.relationship('Student')
+#    student = db.relationship('Student')
 
 class Group(db.Model):
 
@@ -154,7 +153,6 @@ def connect_to_db(app, db_name):
 
 if __name__ == "__main__":
     from server import app
-
     app.app_context().push()
     connect_to_db(app, "classroom")   
    

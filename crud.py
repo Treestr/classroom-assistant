@@ -57,12 +57,13 @@ def get_users():
 
 def get_teacher_by_email(email):
 
-    return Teacher.query.filter(Teacher.email == email).first() ##SHOULD CREATE USER CLASS?
+    return Teacher.query.filter(Teacher.email == email).first()
 
-def create_student(fname, lname, student_id):
+
+def create_student(fname):
     
     
-    new_student = Student(fname, lname=lname, student_id=student_id) 
+    new_student = Student(fname) 
     db.session.add(new_student)
     db.session.commit()
     

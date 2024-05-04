@@ -42,6 +42,27 @@ def register_user():
         db.session.add(user)
         db.session.commit()
         flash("Success! Account Created. Please log in.")
+    return redirect("/login")
+
+@app.route ("/login")
+def login_page():
+    return render_template("login.html")
+
+
+@app.route ("/login_user", methods=["POST"])
+def login_user():
+    email=request.form.get("email")
+    password=request.form.get("password")
+    teacher = crud.get_teacher_by_email(email)
+    if password == teacher.password:
+        session["teacher_id"]=teacher.teacher_id
+        return redirect("/add_classroom")
+    flash ("Not logged in.")
+    return redirect("/login")
+
+@app.route ("/add_classroom")
+def add_classroom():
+    return render_template("add_classroom.html")
 
 @app.route('/add_students')
 def index():
@@ -51,13 +72,22 @@ def index():
     
     
 #ADD STUDENTS TO CLASSROOM
-@app.route('/add_student', methods=['POST'])
+# @app.route('/add_student', methods=['POST'])
+# def add_student():
+    # data = request.json
+    # fname = data.get('fname')
+    # new_student = {'fname': fname}
+    # students.append(new_student)
+
+#NEW FILE, ADD STUDENTS TO CLASSROOM, NEED STUDENTS TO BELONG TO A CLASSROOM
+@app.route('/addstudent', methods=['POST'])
 def add_student():
-    data = request.json
-    fname = data.get('fname')
-    lname = data.get('lname')
-    new_student = {'fname': fname, 'lname': lname}
-    students.append(new_student)
+    fname = request.form.get("fname")
+    
+#1: query for teacher, 2. query for classroom, 3. create student
+    
+    return render_template("addstudent.html")
+                              
             
 # return jsonify(new_student)
 # 

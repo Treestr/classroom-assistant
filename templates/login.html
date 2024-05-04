@@ -1,0 +1,11 @@
+{%extends "base.html" %} {% block title%} Add Students: Classroom Assistant{%
+endblock %} {%block head %} {% endblock %} {% block body %}
+
+<h1>Add Students</h1>
+<form action="/login_user" method="POST">
+  Email <input type="text" name="email" /> Password
+  <input type="password" name="password" />
+  <input type="submit" />
+</form>
+
+{% endblock %}
