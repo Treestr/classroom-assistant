@@ -60,6 +60,7 @@ class Classroom(db.Model):
     classroom_name = db.Column(db.String(20), nullable=False, unique=True)
     teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.teacher_id'), nullable=False)
     students = db.relationship('Student', back_populates='classroom') 
+    classroom_description=db.Column(db.Text)
     
     def __repr__(self):
         return f"<Classroom(classroom_id={self.teacher_id} fname ='self{self.fname}'lname ='self{self.lname} teacher_email ={self.email}/>"

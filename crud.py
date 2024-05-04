@@ -60,10 +60,10 @@ def get_teacher_by_email(email):
     return Teacher.query.filter(Teacher.email == email).first()
 
 
-def create_student(fname):
+def create_student(fname, classroom_id, teacher_id):
     
     
-    new_student = Student(fname) 
+    new_student = Student(fname=fname, classroom_id=classroom_id, teacher_id=teacher_id) 
     db.session.add(new_student)
     db.session.commit()
     
@@ -77,8 +77,8 @@ def get_all_students():
 def get_student_by_id():
     Student.query.get(1)
 
-def create_classroom():
-    new_classroom = Classroom()
+def create_classroom(classroom_name, classroom_description):
+    new_classroom = Classroom(classroom_name=classroom_name, classroom_description=classroom_description)
     db.session.add(new_classroom)
     db.session.commit() 
 

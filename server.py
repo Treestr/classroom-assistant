@@ -64,10 +64,18 @@ def login_user():
 def add_classroom():
     return render_template("add_classroom.html")
 
+@app.route("/addclassroom", methods=["POST"])
+def addclassroom():
+    classroom_name = request.form.get("classroom_name")
+    classroom_description= request.form.get("classroom_description")
+    classroom=crud.create_classroom(classroom_name, classroom_description)
+    session["classroom_id"]=classroom.classroom_id
+    return redirect("/add_students")
+
 @app.route('/add_students')
-def index():
-    students = []
-    return render_template('add_students.html', students=students)
+def student_page():
+    # students = []
+    return render_template('addstudents.html')
     
     
     
@@ -83,10 +91,10 @@ def index():
 @app.route('/addstudent', methods=['POST'])
 def add_student():
     fname = request.form.get("fname")
-    
-#1: query for teacher, 2. query for classroom, 3. create student
-    
-    return render_template("addstudent.html")
+    student=crud.create_student(fname, session["classroom_id"], session["teacher_id"])    
+    print(student)
+    flash("Student Created!")
+    return redirect("/")
                               
             
 # return jsonify(new_student)
