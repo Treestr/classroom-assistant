@@ -129,7 +129,7 @@ class Attendance(db.Model):
     # __tablename__ = "groups"
 # 
     # group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    # group_name = db.Column(db.String(50), nullable=False, unique=True)
+    # group_name = db.Column(db.String(100), nullable=False, unique=True)
     # students = db.relationship('GroupMembership', back_populates="groups")
     # classroom_id = db.Column(db.Integer, db.ForeignKey('classroom.classroom_id'), nullable=False)
     # classroom = db.relationship('Classroom', back_populates='groups')

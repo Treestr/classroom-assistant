@@ -12,3 +12,10 @@ h1 {
   background-color: red;
   padding: 20px;
 }
+
+textarea {
+  width: 100%; /* Full width */
+  min-height: 50px; /* Minimum height */
+  overflow: auto;
+  resize: vertical;
+}
