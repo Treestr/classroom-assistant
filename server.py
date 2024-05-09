@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 import crud 
 from model import connect_to_db, db, Student #add all classes here specifically?
-
+#what is Celery??
 
 
 from jinja2 import StrictUndefined
@@ -11,7 +11,7 @@ from jinja2 import StrictUndefined
 app = Flask(__name__)
 app.secret_key = "dev"
 
-app.jinja_env.undefined = StrictUndefined ##RESEARCH strict undefined
+app.jinja_env.undefined = StrictUndefined 
 
 
 @app.route('/')
@@ -108,8 +108,30 @@ def add_student():
 
 @app.route('/dashboard')
 def show_dashboard():
-    #get all students to pass to template & display*jinja, boostrap - cards *get all students *query database *review crud!!!!
-    return render_template("dashboard.html")
+    if 'teacher_id' not in session:
+        flash("Please log in to view your dashboard.")
+        return redirect("/login")
+    
+    teacher_id = session['teacher_id']
+    classrooms = crud.get_classrooms_by_teacher_id(teacher_id)
+    if not classrooms:
+        flash("No classrooms available yet. Please add a classroom.")
+
+    return render_template("dashboard.html", classrooms=classrooms)    
+        
+# @app.task
+# def check_time_limits():
+    # now = datetime.utcnow()
+    # active_movements = MovementLog.query.filter(MovementLog.time_in.is_(None)).join(Location).all()      
+    # for movement in active_movements:
+        # if movement.location.time_limit and now> movement.time_out +timedelta(minutes=movement.location.time_limit):
+            # send_notification(movement.student_id, movement.location_id)   
+# 
+# def send_notification(student_id, location_id):
+# 
+    # print(f"Student {student_id} has exceeded time limit at location {location_id}")            
+        # 
+    #get all students to pass to template & display*jinja, boostrap - cards *get all students *query database *review crud!!!! return render_template("dashboard.html")
                               
             
 # return jsonify(new_student)
@@ -119,11 +141,12 @@ def show_dashboard():
      
     
 
-# @app.route("/students/<student_id>)
-# def show_students(student_id):
+@app.route("/classroom/<classroom_id>")
+def show_classroom(classroom_id):
+
+    classroom = crud.get_classrooms_by_classroom_id(classroom_id)
+    return render_template("class.html", classroom=classroom)
 # 
-    # student = crud.get_students_by_id(student_id)
-    # return render_template("all_students.html"), student==student
 
 
 

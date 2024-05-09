@@ -73,6 +73,17 @@ movement_log_entry = MovementLog(student=student2, location=location2, time_out=
 db.session.add(movement_log_entry1) #CHANGE NAME
 db.session.add(movement_log_entry2) #CHANGE NAME
 
+#MOVEMENT LOG LOCATIONS: STANDARD & OPEN (TEACHER/USER DEFINED)
+# def add_standard_locations():
+    # db.create_all()
+    # standard_locations = ['Restroom', 'Office', 'Library', 'Counselor', 'Nurse', 'Other']
+    # existing_locations = {loc.location_name for loc in Location.query.all()}
+    # for loc_name in standard_locations:
+        # if loc_name not in existing_locations:
+            # new_location = Location(location_name=loc_name)
+            # db.session.add(new_location)
+
+
 db.session.commit()
 
 print("Seed data added")

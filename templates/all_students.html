@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %} All Students - Classroom Assistant {%endblock %} 
+
+{% block body %}
+<div class="container mt-4">
+    <h1>All Students</h1>
+    <p class="lead">View and manage all students here</p>
+
+    <!-- search bar -->
+
+<div class="row mb-4">
+<div class="col-md-6">
+    <input type=""text" class=""form-control" id=""studentSearch" onkeyup="searchStudents()" placeholder=""Search for students...">
+    "
+</div>
+</div>
+
+<!-- Students table -->
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Classroom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="studentTable">
+    {% for student in students %}
+<tr>
+    <td>{{ student.name }}</td>
+    <td>{{ student.classroom }}</td>
+    <td>
+
+    </td>
+</tr>
+</tbody>
+    </table></div>
+</table>

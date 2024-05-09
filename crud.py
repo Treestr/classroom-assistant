@@ -85,6 +85,12 @@ def get_classrooms():
 
     return Classroom.query.all()
 
+def get_classrooms_by_teacher_id(teacher_id):
+    return Classroom.query.filter_by(teacher_id=teacher_id).all()
+
+def get_classrooms_by_classroom_id(classroom_id):
+    return Classroom.query.filter_by(classroom_id=classroom_id).first()
+
 
 # def get_all_teachers():
     return Teacher.query.all()

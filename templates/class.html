@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %} Class - Classroom
+Assistant{%endblock %} {% block body %}
+<div class="container mt-4">
+  <h1>{{classroom.classroom_name}}</h1>
+  <h2>h2. Bootstrap heading</h2>
+  <p>{{classroom.classroom_description}}</p>
+  {% for student in classroom.students %}
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{ student.fname }}</h5>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

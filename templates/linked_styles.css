@@ -1,0 +1,14 @@
+body {
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+h1 {
+  color: aqua;
+}
+
+.urgent {
+  color: white;
+  background-color: red;
+  padding: 20px;
+}
