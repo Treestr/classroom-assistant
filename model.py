@@ -151,7 +151,7 @@ class Attendance(db.Model):
     # def __repr__(self):
         # return f"<GroupMembership(student_id={self.student_id}, group_id={self.group_id})>"
 # 
-# 
+# DRAFT - FOR DRAG AND DROP GROUP PAGE, class StudentPosition, GroupVersion??
     
 # class Assignment(db.Model):
     # 

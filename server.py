@@ -62,7 +62,7 @@ def login_user():
         print(teacher.teacher_id)
         print(session)
         
-        return redirect("/add_classroom")
+        return redirect("/dashboard")
     flash ("Not logged in.")
     return redirect("/login")
 
@@ -104,7 +104,7 @@ def add_student():
     db.session.commit()
     print(student)
     flash("Student Created!")
-    return redirect("/dashboard")
+    return redirect(f'/classroom/{session["classroom_id"]}')
 
 @app.route('/dashboard')
 def show_dashboard():
@@ -137,13 +137,29 @@ def show_dashboard():
 # return jsonify(new_student)
 # 
         # return redirect("/")  
-# 
+
+        #
+#DRAG/DROP students into groups DRAFT JS
+
+@app.route('/classroom/<int:classroom_id>/display_students')
+def display_students(classroom_id):
+    classroom = Classroom.query.get(classroom_id)
+    if not classroom:
+        flash("Classroom not found.")
+        return redirect("/dashboard")
+    
+    students = classroom.students
+    return render_template("display_students.html", students=students, classroom=classroom)
+
+
+
+
      
     
 
 @app.route("/classroom/<classroom_id>")
 def show_classroom(classroom_id):
-
+    session["classroom_id"]=classroom_id
     classroom = crud.get_classrooms_by_classroom_id(classroom_id)
     return render_template("class.html", classroom=classroom)
 # 

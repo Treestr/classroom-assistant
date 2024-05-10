@@ -19,3 +19,7 @@ textarea {
   overflow: auto;
   resize: vertical;
 }
+.all-students {
+  display: flex;
+  flex-direction: row;
+}
