@@ -152,9 +152,16 @@ def display_students(classroom_id):
     return render_template("display_students.html", students=students, classroom=classroom)
 
 
-
-
-     
+# @app.route(__________)#time in time out 
+# def (attendance_id):
+    # attendance = crud.get_attendance_by_id(attendance_id)
+    # new_status = 'out_pass' 
+    # if attendance.status =='in_class' else 'in_class'
+    # updated_attendance = crud.update_attendance_status(attendance_id, new_status)
+    # return redirect#___________________
+# 
+# 
+    #  
     
 
 @app.route("/classroom/<classroom_id>")

@@ -76,7 +76,7 @@ class Attendance(db.Model):
     __tablename__ = "attendance"
     attendance_id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    status = db.Column(db.String(10), nullable=False) #present or absent
+    status = db.Column(db.String(10), nullable=False) #in class or out on pass
     time_in = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
     time_out = db.Column(db.DateTime) 
     student_id = db.Column(db.Integer, db.ForeignKey('students.student_id'))

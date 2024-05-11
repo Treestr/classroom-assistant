@@ -2,13 +2,17 @@
 
 # session/key
 
-QUE QUESTIONS
-1project dependencies (general)
 
-2html file naming conventions - or _
+query selector all to select all cards(elements), ref: dom manipulation lecture specif: font changer @ bottom of handout,
+for eeach card: add button. Button will if clicked will change background color to indicate YAY
+run a loop (similar to font changer) to give each an event 
+all start out green, 
 
 
-####SEED DATABASE
+
+
+
+
 
 
 

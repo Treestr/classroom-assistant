@@ -2,19 +2,21 @@
 Assistant{%endblock %} {% block body %}
 <div class="container mt-4">
   <h1>{{classroom.classroom_name}}</h1>
-  <h2>h2.</h2>
+  <h2></h2>
   <p>{{classroom.classroom_description}}</p>
-  <p><a href="/add_students">+ Add Student</a></p>
+  <!-- <p><a href="/add_students">+ Add Student</a></p> -->
   <div class="all-students">
     {% for student in classroom.students %}
-    <div class="card" style="width: 18rem; margin-right: 2%">
+    <div class="student-card card" style="width: 18rem; margin-right: 2%">
       <div class="card-body">
         <h5 class="card-title">{{ student.fname }}</h5>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <a href="#" class="card-link" style="font-size: 14px">student info</a>
+        <a href="#" class="card-link" style="font-size: 14px">status</a>
       </div>
     </div>
     {% endfor %}
   </div>
+  <p><a href="/add_students">+ Add Student</a></p>
 </div>
+<script src="../static/ajax.js"></script>
 {% endblock %}
