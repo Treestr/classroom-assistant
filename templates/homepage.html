@@ -11,7 +11,20 @@ endblock %} {% block body %}
     <div class="col-md-6">
       <h2>New user</h2>
       <p>Create a free account to access all features.</p>
-      <a href="/register" class="btn btn-primary">Register</a>
+      <!-- MODAL REPLACEMENT FOR BELOW:  -->
+      <button
+        typ="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#registerModal"
+      
+        Register
+      </button>
+      <!-- END MODAL  -->
+
+      <!-- ORIGINAL REGISTRATION -->
+      <!-- <a href="/register" class="btn btn-primary">Register</a> -->
+      <!-- ORIGINAL REGISTRATION -->
     </div>
     <div class="col-md-6">
       <h2>Returning User?</h2>

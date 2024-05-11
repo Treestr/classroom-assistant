@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-  color: aqua;
+  color: hotpink;
 }
 
 .urgent {
@@ -25,9 +25,20 @@ textarea {
 }
 .all-students {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
 }
 
+.student-card {
+  width: 18rem;
+  margin-right: 2%;
+  margin-bottom: 20px;
+  
+}
+
+.pink-background {
+  background-color: lightpink;
+}
 /* <!-- modal/lightbox sample --> */
 /* <div class="modal" tabindex="-1"> */
 /* <div class="modal-dialog"> */
