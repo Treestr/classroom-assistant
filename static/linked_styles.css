@@ -7,6 +7,10 @@ h1 {
   color: hotpink;
 }
 
+.nav-item .nav-link {
+  font-size: 16px;
+}
+
 .urgent {
   color: white;
   background-color: red;
@@ -33,11 +37,14 @@ textarea {
   width: 18rem;
   margin-right: 2%;
   margin-bottom: 20px;
-  
 }
 
 .pink-background {
   background-color: lightpink;
+}
+
+.something in navbar left {
+  background-image: url("image/example.png");
 }
 /* <!-- modal/lightbox sample --> */
 /* <div class="modal" tabindex="-1"> */
