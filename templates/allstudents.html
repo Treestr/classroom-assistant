@@ -1,16 +1,13 @@
-{% extends 'base.html' %} {% block title %} Class - Classroom
-Assistant{%endblock %} {% block body %}
+{% extends 'base.html' %} {% block title %} All Students - Classroom Assistant
+{% endblock %} {% block body %}
 <div class="container mt-4">
-  <h1>{{classroom.classroom_name}}</h1>
-  <h2></h2>
-  <p>{{classroom.classroom_description}}</p>
-  <!-- <p><a href="/add_students">+ Add Student</a></p> -->
+  <h1>All Students</h1>
+
   <div class="all-students">
-    {% for student in classroom.students %}
+    {% for student in students %}
     <div class="student-card card" style="width: 18rem; margin-right: 2%">
       <div class="card-body">
         <h5 class="card-title">{{ student.fname }}</h5>
-
         <!-- <a href="#" class="card-link" style="font-size: 14px">student info</a> -->
         <div class="student-buttons">
           <a
@@ -32,16 +29,13 @@ Assistant{%endblock %} {% block body %}
               />
             </svg>
           </a>
-
           <!-- REPLACE 'STUDENT INFO' TEXT WITH BOOTSTRAP GRAPH ICON -->
           <!-- LECTURE EXAMPLE:  -->
           <!-- <img  -->
           <!-- class="card-img-top" -->
           <!-- src="bootstrap graph icon" -->
           <!-- alt="student information link" -->
-
           <!-- <a href="#" class="card-link" style="font-size: 14px">status</a> -->
-
           <a href="#" class="card-link" style="font-size: 14px">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,31 +57,5 @@ Assistant{%endblock %} {% block body %}
     </div>
     {% endfor %}
   </div>
-  <p><a href="/add_students">+ Add Student</a></p>
 </div>
-<script src="../static/ajax.js"></script>
 {% endblock %}
-
-<!-- consider addtl nav bar at bottom for user ease of use -->
-<!--  -->
-<!-- PRETTY LECTURE HOW TO INCLUDE IMAGES -->
-<!--  -->
-<!-- <img -->
-<!-- class="card-img-top" -->
-<!-- src="static/images/screenshots/full-height-columns.png" -->
-<!-- alt="Screenshot.of.the.full-height-columns.demo"> -->
-
-<!-- semantic H.T.M.L -->
-<!-- <header></header> -->
-<!-- <nav></nav> -->
-<!-- <aside></aside> -->
-<!-- <main> -->
-<!-- <article> -->
-<!-- <figure> -->
-<!--        -->
-<!-- </figure> -->
-<!-- <p></p> -->
-<!-- </article> -->
-<!-- <section></section> -->
-<!-- </main> -->
-<!-- <footer></footer> -->

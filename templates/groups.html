@@ -1,95 +1,81 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{%extends "base.html" %} {% block title%} Add Students: Classroom Assistant{%
-endblock %} {%block head %} {% endblock %} {% block body %}
-
-
+{% extends 'base.html' %} {% block title %} Groups - Classroom Assistant {%
+endblock %} {% block body %}
+<div class="container mt-4">
+  <h1>Manage Groups</h1>
+  <p>Drag and drop students between groups.</p>
+
+  <!-- Drop Zone for Groups -->
+  <div
+    class="drop-zone"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+    style="
+      width: 100%;
+      min-height: 500px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    "
+  >
+    <h2>Group 1</h2>
+    <!-- Cards will be dropped here -->
+  </div>
+
+  <div
+    class="drop-zone"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+    style="
+      width: 100%;
+      min-height: 500px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    "
+  >
+    <h2>Group 2</h2>
+    <!-- Cards will be dropped here -->
+  </div>
+
+  <!-- Draggable Student Cards -->
+  <div class="all-students">
+    {% for student in classroom.students %}
+    <div
+      class="student-card card"
+      draggable="true"
+      ondragstart="drag(event)"
+      id="student{{ student.id }}"
+      style="width: 18rem; margin-right: 2%; margin-bottom: 20px"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ student.fname }}</h5>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  }
+</script>
+
+{% endblock %} {%extends "base.html" %} {% block title%} Add Students: Classroom
+Assistant{% endblock %} {%block head %} {% endblock %} {% block body %}
 
 <!-- <h1>Create Groups</h1> -->
 <!-- <form action="/add_group" method="POST"> -->
-  <!-- Add Group <input type="text" name="group_name" /> -->
-  <!-- <input type="submit" /> -->
+<!-- Add Group <input type="text" name="group_name" /> -->
+<!-- <input type="submit" /> -->
 <!-- </form> -->
 <!--  -->
 {% endblock %}

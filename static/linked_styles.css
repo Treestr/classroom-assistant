@@ -48,13 +48,24 @@ textarea {
   width: 18rem;
   margin-right: 2%;
   margin-bottom: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, */
+    /* rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, */
+    /* rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
-
+.student-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2% 0;
+  margin-top: 15px;
+}
  
+#logo-img {
+  height: 40px;
+  margin-right: 8px;
+  border-radius: 15%;
+}
 
 
 /* .card-title-name { */

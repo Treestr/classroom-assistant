@@ -106,6 +106,12 @@ def add_student():
     flash("Student Created!")
     return redirect(f'/classroom/{session["classroom_id"]}')
 
+@app.route('/allstudents')
+def all_students():
+    students = crud.get_all_students()
+    # students.sort....
+    return render_template('allstudents.html', students=students)
+    
 @app.route('/dashboard')
 def show_dashboard():
     if 'teacher_id' not in session:

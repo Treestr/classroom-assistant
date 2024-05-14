@@ -65,10 +65,13 @@ def create_student(fname, classroom_id, teacher_id):
     
     return new_student
 
-def get_all_students():
+# def get_all_students():
     """Return all students"""
 
+def get_all_students():
     return Student.query.all()
+
+
 
 def get_student_by_id():
     Student.query.get(1)
