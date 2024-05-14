@@ -4,14 +4,20 @@ body {
 }
 
 h1 {
-  color: hotpink;
+  /* color: hotpink; */
+  font-weight: 580;
+
+}
+
+h2 {
+  font-weight: 500;
 }
 
 .navbar {
   position: sticky;
   top: 0;
   width: 100%
-  z-index: 1000;
+  z-index: 100;
 }
 
 .nav-item .nav-link {
@@ -25,9 +31,12 @@ h1 {
 }
 
 .login-margin {
-  margin: 20%;
+  margin: 2%;
 }
 
+.register-margin {
+  margin: 2%
+}
 body {
   background-color: #eceff3;
 }
@@ -62,7 +71,7 @@ textarea {
 }
  
 #logo-img {
-  height: 40px;
+  height: 80px;
   margin-right: 8px;
   border-radius: 15%;
 }
