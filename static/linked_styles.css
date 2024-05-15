@@ -3,6 +3,16 @@ body {
   font-size: 24px;
 }
 
+.homepage-image {
+  background-image: url("./img/warmspec.jpg");
+  margin-left: -7%;
+  margin-right: -7%;
+  padding: 7%;
+  background-position: right;
+}
+
+
+
 h1 {
   /* color: hotpink; */
   font-weight: 580;
